@@ -1,0 +1,16 @@
+.vsconfig
+.vs
+Binaries/
+Intermediate/
+Saved/
+WorkDemo.sln
+Content/EuropeanBeech/
+Content/StarterContent/
+Content/__ExternalActors__/
+Content/__ExternalObjects__/
+Content/FPS_Weapon_Bundle/
+Content/Assert/Buff/
+Content/Assert/Environment/
+Content/Assert/GameAssert/
+Content/Assert/House/
+Content/Assert/Texture/
