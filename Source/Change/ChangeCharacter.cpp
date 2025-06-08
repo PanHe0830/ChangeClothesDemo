@@ -125,6 +125,8 @@ void AChangeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	{
 		UE_LOG(LogTemplateCharacter, Error, TEXT("'%s' Failed to find an Enhanced Input component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
 	}
+
+	PlayerInputComponent->BindAction("Esc",IE_Pressed,this,&AChangeCharacter::OpenShowLevel);
 }
 
 void AChangeCharacter::Move(const FInputActionValue& Value)
@@ -161,4 +163,9 @@ void AChangeCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void AChangeCharacter::OpenShowLevel()
+{
+	UGameplayStatics::OpenLevel(GetWorld(),FName("ShowMap"));
 }

@@ -8,6 +8,8 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "Kismet/GameplayStatics.h"
+#include "Change/SaveGame/ClotheSaveGame.h"
 
 // Sets default values
 AShowCharacter::AShowCharacter()
@@ -57,7 +59,17 @@ AShowCharacter::AShowCharacter()
 void AShowCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	if (UGameplayStatics::DoesSaveGameExist(TEXT("CharacterSlot"), 0))
+	{
+		UClotheSaveGame* LoadedSave = Cast<UClotheSaveGame>(
+			UGameplayStatics::LoadGameFromSlot(TEXT("CharacterSlot"), 0));
+
+		if (LoadedSave)
+		{
+			BodyMesh->SetSkeletalMesh(LoadedSave->BodyMesh);
+		}
+	}
 }
 
 // Called every frame
